@@ -1,0 +1,11 @@
+{%- comment -%}
+  Dark/Light theme toggle. Defaults to Dark (set inline in theme.liquid
+  before paint); this button lets a visitor manually switch to Light, and
+  the choice is remembered via localStorage. See assets/kingsdale-custom.js.
+{%- endcomment -%}
+<button type="button" id="ks-theme-btn" class="ks-theme-toggle" aria-label="Toggle light and dark theme">
+  <svg id="ks-theme-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+    <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/>
+  </svg>
+  <span class="ks-mode-label" id="ks-mode-label">Dark</span>
+</button>
