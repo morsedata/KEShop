@@ -1,0 +1,59 @@
+<div class="ks-section color-scheme-1" id="corporate">
+  <div class="ks-wrap">
+    <div class="ks-corporate color-scheme-3 ks-reveal">
+      <div>
+        <div class="ks-eyebrow">{{ section.settings.eyebrow }}</div>
+        <h2>{{ section.settings.heading }}</h2>
+        <p>{{ section.settings.body }}</p>
+        <ul class="ks-corp-points">
+          {%- for block in section.blocks -%}
+            <li {{ block.shopify_attributes }}>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              {{ block.settings.point }}
+            </li>
+          {%- endfor -%}
+        </ul>
+        <div class="ks-corp-cta">
+          {%- assign ks_wa_digits = settings.ks_whatsapp_number | remove: '+' | remove: ' ' | remove: '-' -%}
+          <a href="https://wa.me/{{ ks_wa_digits }}?text={{ section.settings.whatsapp_message | url_encode }}" target="_blank" rel="noopener" class="ks-btn ks-btn-primary">Enquire on WhatsApp</a>
+          <a href="tel:+{{ ks_wa_digits }}" class="ks-btn ks-btn-ghost">Call +{{ settings.ks_whatsapp_number }}</a>
+        </div>
+      </div>
+      <div class="ks-corp-visual">
+        <svg viewBox="0 0 100 100" fill="none" stroke-width="1.4"><rect x="20" y="30" width="60" height="45" rx="3"/><path d="M20 42 L80 42"/><path d="M38 30 L38 22 Q38 16 50 16 Q62 16 62 22 L62 30"/><circle cx="50" cy="58" r="8"/></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Kingsdale Corporate Gifting",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "For Business" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Gifting Your Clients Will Actually Keep On." },
+    { "type": "textarea", "id": "body", "label": "Body copy", "default": "We work with businesses across South Africa on branded socks and apparel for events, onboarding kits and executive gifting — designed, sampled and delivered without the back-and-forth." },
+    { "type": "text", "id": "whatsapp_message", "label": "WhatsApp enquiry message", "default": "Hello Kingsdale Emporio! I am reaching out from your website and would like more information on corporate gifting." }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Bullet point",
+      "settings": [
+        { "type": "text", "id": "point", "label": "Point", "default": "Custom colourways & branded packaging" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kingsdale Corporate Gifting",
+      "blocks": [
+        { "type": "point", "settings": { "point": "Custom colourways & branded packaging" } },
+        { "type": "point", "settings": { "point": "Minimum orders suited to small and large teams" } },
+        { "type": "point", "settings": { "point": "Nationwide delivery, Cape Town made" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

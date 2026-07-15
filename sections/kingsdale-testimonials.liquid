@@ -1,0 +1,47 @@
+<div class="ks-section color-scheme-2">
+  <div class="ks-wrap">
+    <div class="ks-section-head ks-reveal">
+      {%- if section.settings.eyebrow != blank -%}<div class="ks-eyebrow ks-center">{{ section.settings.eyebrow }}</div>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    <div class="ks-quotes">
+      {%- for block in section.blocks -%}
+        <div class="ks-quote-card ks-reveal" {{ block.shopify_attributes }}>
+          <p>&ldquo;{{ block.settings.quote }}&rdquo;</p>
+          <div class="ks-who">{{ block.settings.attribution }}</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Kingsdale Testimonials",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Word Gets Around" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "From the Inner Circle" }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Quote",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote", "default": "Ordered branded socks for our whole team's onboarding kit. The finish made a R500 gift feel like a R2000 one." },
+        { "type": "text", "id": "attribution", "label": "Attribution", "default": "Naledi M., Johannesburg" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kingsdale Testimonials",
+      "blocks": [
+        { "type": "quote", "settings": { "quote": "Ordered branded socks for our whole team's onboarding kit. The finish made a R500 gift feel like a R2000 one.", "attribution": "Naledi M., Johannesburg" } },
+        { "type": "quote", "settings": { "quote": "The monogram on my pair is a better conversation starter than my watch. That's saying something.", "attribution": "Ryan P., Cape Town" } },
+        { "type": "quote", "settings": { "quote": "Sampled, briefed and delivered for a 200-person conference in under three weeks. No drama, just quality.", "attribution": "Thandiwe K., Durban" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

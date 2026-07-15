@@ -1,0 +1,46 @@
+<div class="ks-hero color-scheme-1">
+  <div class="ks-wrap ks-hero-inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="ks-eyebrow ks-center">{{ section.settings.eyebrow }}</div>
+    {%- endif -%}
+
+    <h1>{{ section.settings.heading }}</h1>
+
+    {%- if section.settings.subheading != blank -%}
+      <p class="ks-hero-sub">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.body != blank -%}
+      <div class="ks-hero-copy">{{ section.settings.body }}</div>
+    {%- endif -%}
+
+    <div class="ks-hero-ctas">
+      {%- if section.settings.button_1_label != blank -%}
+        <a href="{{ section.settings.button_1_link | default: '#' }}" class="ks-btn ks-btn-primary">{{ section.settings.button_1_label }}</a>
+      {%- endif -%}
+      {%- if section.settings.button_2_label != blank -%}
+        <a href="{{ section.settings.button_2_link | default: '#' }}" class="ks-btn ks-btn-ghost">{{ section.settings.button_2_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Kingsdale Hero",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Since 2013 · Cape Town" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Curating the Extraordinary" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Bespoke Elegance. Born in Cape Town." },
+    { "type": "richtext", "id": "body", "label": "Body copy", "default": "<p>A regal house of black and gold, built to hold something far less quiet — bold, playful, colour-drenched socks and apparel.</p>" },
+    { "type": "text", "id": "button_1_label", "label": "Primary button label", "default": "Explore the Collection" },
+    { "type": "url", "id": "button_1_link", "label": "Primary button link" },
+    { "type": "text", "id": "button_2_label", "label": "Secondary button label", "default": "Design Your Own" },
+    { "type": "url", "id": "button_2_link", "label": "Secondary button link" }
+  ],
+  "presets": [
+    { "name": "Kingsdale Hero" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,42 @@
+<div class="ks-section color-scheme-1" style="padding-top: 4rem; padding-bottom: 4rem; border-top: 1px solid rgba(var(--color-foreground), 0.15); border-bottom: 1px solid rgba(var(--color-foreground), 0.15);">
+  <div class="ks-wrap">
+    <div class="ks-heritage-line ks-reveal">
+      {%- for block in section.blocks -%}
+        <div class="ks-h-mark" {{ block.shopify_attributes }}>
+          <div class="ks-h-dot"></div>
+          <div class="ks-yr">{{ block.settings.year }}</div>
+          <p>{{ block.settings.milestone }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Kingsdale Heritage Timeline",
+  "class": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "milestone",
+      "name": "Milestone",
+      "settings": [
+        { "type": "text", "id": "year", "label": "Year", "default": "2013" },
+        { "type": "text", "id": "milestone", "label": "Milestone", "default": "Kingsdale Emporio founded in Cape Town" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Kingsdale Heritage Timeline",
+      "blocks": [
+        { "type": "milestone", "settings": { "year": "2013", "milestone": "Kingsdale Emporio founded in Cape Town" } },
+        { "type": "milestone", "settings": { "year": "2017", "milestone": "Signature sock collection launches" } },
+        { "type": "milestone", "settings": { "year": "2021", "milestone": "Corporate gifting studio opens" } },
+        { "type": "milestone", "settings": { "year": "Today", "milestone": "Custom apparel joins the portfolio" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

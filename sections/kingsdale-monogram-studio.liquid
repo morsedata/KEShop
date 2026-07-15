@@ -1,0 +1,44 @@
+<div class="ks-section color-scheme-1" id="studio">
+  <div class="ks-wrap ks-studio">
+    <div class="ks-studio-visual ks-reveal">
+      <svg viewBox="0 0 200 200" fill="none">
+        <path d="M55 30 L55 105 Q55 150 100 158 Q145 150 145 105 L145 30" stroke="rgb(var(--color-button))" stroke-width="1.4"/>
+        <line x1="55" y1="58" x2="145" y2="58" stroke="rgb(var(--color-button))" stroke-width="1.4" opacity="0.5"/>
+        <text id="ks-mono-preview" x="100" y="115" font-size="42" text-anchor="middle">KE</text>
+      </svg>
+    </div>
+    <div class="ks-studio-copy ks-reveal">
+      <div class="ks-eyebrow">{{ section.settings.eyebrow }}</div>
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.body }}</p>
+      <div class="ks-studio-form">
+        <div>
+          <label for="ks-mono-input">Your Monogram (up to 3 letters)</label>
+          <input type="text" id="ks-mono-input" maxlength="3" placeholder="e.g. KDE" autocomplete="off">
+        </div>
+        <div class="ks-studio-actions">
+          <a href="#" id="ks-wa-link" data-wa-number="{{ settings.ks_whatsapp_number }}" target="_blank" rel="noopener" class="ks-btn ks-btn-primary">Send to Studio via WhatsApp</a>
+          {%- if section.settings.email != blank -%}
+            <a href="mailto:{{ section.settings.email }}" class="ks-btn ks-btn-ghost">Email Instead</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Kingsdale Monogram Studio",
+  "class": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Bespoke Studio" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "See Your Initials, Before You Order." },
+    { "type": "textarea", "id": "body", "label": "Body copy", "default": "Every corporate gifting order starts here. Type the initials or monogram you'd like woven into your pair, preview it in gold, then send your brief straight through to our studio on WhatsApp." },
+    { "type": "text", "id": "email", "label": "Fallback contact email", "default": "info@kingsdalesocks.co.za" }
+  ],
+  "presets": [
+    { "name": "Kingsdale Monogram Studio" }
+  ]
+}
+{% endschema %}
