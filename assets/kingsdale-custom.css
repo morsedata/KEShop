@@ -1,0 +1,310 @@
+/* ==========================================================================
+   KINGSDALE EMPORIO — Brand layer on top of Dawn
+   Loads AFTER theme.liquid's generated color/font variables so these rules
+   win the cascade without needing !important anywhere except noted.
+   ========================================================================== */
+
+/* ---------- 1. Typography: force Cinzel + Montserrat regardless of the
+   font picker selection in Theme Settings > Typography. Dawn's own
+   variables (--font-heading-family / --font-body-family) are reused
+   everywhere in base.css, so overriding them here re-types the whole site,
+   including native product/cart/account pages. ---------- */
+:root {
+  --font-heading-family: 'Cinzel', serif;
+  --font-heading-style: normal;
+  --font-heading-weight: 600;
+  --font-body-family: 'Montserrat', sans-serif;
+  --font-body-style: normal;
+  --font-body-weight: 400;
+
+  --ks-heritage-red: 166, 51, 42;
+  --ks-ochre: 216, 154, 46;
+  --ks-cerulean: 44, 125, 160;
+  --ks-emerald-rgb: 31, 122, 84;
+  --ks-gold-dim: rgba(212, 175, 55, 0.6);
+  --ks-gold-dim-20: rgba(212, 175, 55, 0.2);
+  --ks-radius: 3px;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* ---------- 2. Light / Dark theme engine ----------
+   Dawn renders `.color-scheme-N { --color-background: r,g,b; ... }` server
+   side from Theme Settings > Colors. Scheme 1 & 2 are our neutral surfaces
+   (used across header, footer, body, cards) so those are the two that flip
+   with the toggle. Schemes 3/4/5 are deliberate brand-color blocks
+   (Emerald / Gold / Heritage Red banners) and stay constant in both modes,
+   the same way a "Sale" banner wouldn't change color with dark mode.
+
+   Default (no attribute, or data-theme="dark") = brand dark presets from
+   settings_data.json. data-theme="light" overrides schemes 1 & 2 only. ---------- */
+
+html[data-theme="light"],
+html[data-theme="light"] .color-scheme-1,
+html[data-theme="light"].color-scheme-1 {
+  --color-background: 248, 248, 248;
+  --color-foreground: 11, 11, 10;
+  --color-background-contrast: 191, 191, 191;
+  --color-shadow: 11, 11, 10;
+  --color-button: 156, 122, 38;
+  --color-button-text: 248, 248, 248;
+  --color-secondary-button: 248, 248, 248;
+  --color-secondary-button-text: 156, 122, 38;
+  --color-link: 156, 122, 38;
+  --color-badge-foreground: 11, 11, 10;
+  --color-badge-background: 248, 248, 248;
+  --color-badge-border: 11, 11, 10;
+}
+
+html[data-theme="light"] .color-scheme-2 {
+  --color-background: 255, 255, 255;
+  --color-foreground: 11, 11, 10;
+  --color-background-contrast: 191, 191, 191;
+  --color-shadow: 11, 11, 10;
+  --color-button: 156, 122, 38;
+  --color-button-text: 255, 255, 255;
+  --color-secondary-button: 255, 255, 255;
+  --color-secondary-button-text: 156, 122, 38;
+  --color-link: 156, 122, 38;
+  --color-badge-foreground: 11, 11, 10;
+  --color-badge-background: 255, 255, 255;
+  --color-badge-border: 11, 11, 10;
+}
+
+/* ---------- 3. Header logo ring + theme toggle button ---------- */
+.header__heading-logo,
+.header__heading-link img {
+  border-radius: 50%;
+  border: 1px solid var(--ks-gold-dim);
+}
+
+.ks-theme-toggle {
+  background: none;
+  border: 1px solid rgba(var(--color-foreground), 0.25);
+  color: rgb(var(--color-foreground));
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+.ks-theme-toggle:hover {
+  border-color: rgb(var(--color-button));
+  box-shadow: 0 0 10px var(--ks-gold-dim-20);
+}
+.ks-theme-toggle svg { width: 1.8rem; height: 1.8rem; stroke: rgb(var(--color-button)); }
+.ks-theme-toggle .ks-mode-label {
+  position: absolute;
+  bottom: -1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(var(--color-foreground), 0.6);
+  white-space: nowrap;
+}
+
+/* ---------- 4. Shared section utilities ---------- */
+.ks-section { padding: 8rem 0; }
+@media screen and (max-width: 749px) { .ks-section { padding: 5rem 0; } }
+.ks-wrap { max-width: 124rem; margin: 0 auto; padding: 0 3.2rem; }
+@media screen and (max-width: 749px) { .ks-wrap { padding: 0 2rem; } }
+
+.ks-eyebrow {
+  font-family: var(--font-body-family);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgb(var(--color-button));
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 1.8rem;
+}
+.ks-eyebrow::before { content: ""; width: 2.6rem; height: 1px; background: rgb(var(--color-button)); display: inline-block; }
+.ks-eyebrow.ks-center { justify-content: center; }
+.ks-eyebrow.ks-center::before { display: none; }
+
+.ks-btn {
+  font-family: var(--font-body-family);
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 1.6rem 3.2rem;
+  border-radius: var(--ks-radius);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+}
+.ks-btn:hover { transform: translateY(-2px); }
+.ks-btn-primary { background: rgb(var(--color-button)); color: rgb(var(--color-button-text)); }
+.ks-btn-primary:hover { box-shadow: 0 0 22px var(--ks-gold-dim-20); }
+.ks-btn-ghost { border-color: rgba(var(--color-foreground), 0.3); color: rgb(var(--color-foreground)); }
+.ks-btn-ghost:hover { border-color: rgb(var(--color-button)); color: rgb(var(--color-button)); }
+
+.ks-section-head { max-width: 64rem; margin: 0 auto 5.6rem; text-align: center; }
+.ks-section-head h2 { font-size: clamp(1.9rem, 3.8vw, 2.8rem); }
+.ks-section-head p { margin-top: 1.6rem; color: rgba(var(--color-foreground), 0.7); font-size: 1.5rem; line-height: 1.7; }
+
+/* ---------- 5. Hero ---------- */
+.ks-hero { position: relative; padding: 12rem 0 9rem; overflow: hidden; text-align: center; }
+.ks-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 55% at 50% 0%, var(--ks-gold-dim-20), transparent 70%);
+}
+.ks-hero-inner { position: relative; z-index: 1; max-width: 84rem; margin: 0 auto; }
+.ks-hero h1 { font-size: clamp(2.4rem, 6.4vw, 4.8rem); line-height: 1.1; }
+.ks-hero h1 em { font-style: normal; color: rgb(var(--color-button)); }
+.ks-hero-sub {
+  margin-top: 2.2rem; font-family: var(--font-body-family); font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; font-size: 1.5rem;
+  color: rgba(var(--color-foreground), 0.65);
+}
+.ks-hero-copy { margin: 2.4rem auto 0; max-width: 58ch; color: rgba(var(--color-foreground), 0.75); line-height: 1.8; font-size: 1.6rem; }
+.ks-hero-ctas { display: flex; gap: 1.6rem; justify-content: center; margin-top: 4rem; flex-wrap: wrap; }
+
+/* ---------- 6. Collections / Portfolio cards ---------- */
+.ks-collections { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.4rem; }
+@media screen and (max-width: 989px) { .ks-collections { grid-template-columns: 1fr; } }
+.ks-coll-card {
+  background: rgb(var(--color-background)); border: 1px solid rgba(var(--color-foreground), 0.15);
+  border-radius: 6px; overflow: hidden; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.ks-coll-card:hover { transform: translateY(-6px); border-color: rgb(var(--color-button)); box-shadow: 0 16px 32px rgba(0,0,0,0.35); }
+.ks-coll-media {
+  aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(150deg, var(--ks-gold-dim-20), rgb(var(--color-background)) 75%);
+}
+.ks-coll-media svg { width: 38%; height: 38%; stroke: rgb(var(--color-button)); }
+.ks-coll-body { padding: 2.6rem 2.6rem 3rem; }
+.ks-coll-body .ks-tag { font-size: 1.1rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgb(var(--color-button)); font-weight: 700; }
+.ks-coll-body h3 { font-size: 1.8rem; margin-top: 1rem; }
+.ks-coll-body p { color: rgba(var(--color-foreground), 0.7); font-size: 1.4rem; margin-top: 1rem; line-height: 1.7; }
+.ks-coll-body .ks-link { margin-top: 2rem; display: inline-flex; align-items: center; gap: 0.8rem; font-size: 1.2rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgb(var(--color-button)); text-decoration: none; }
+
+/* ---------- 7. Africana Heritage — real product grid ---------- */
+.ks-swatch-row { display: flex; justify-content: center; gap: 1.4rem; margin: 3.4rem 0 5.6rem; flex-wrap: wrap; }
+.ks-swatch { width: 1.4rem; height: 1.4rem; border-radius: 50%; box-shadow: 0 0 12px currentColor; }
+.ks-africana-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.2rem; }
+@media screen and (max-width: 989px) { .ks-africana-grid { grid-template-columns: repeat(2, 1fr); } }
+@media screen and (max-width: 560px) { .ks-africana-grid { grid-template-columns: 1fr; } }
+.ks-africana-grid .card-wrapper { position: relative; }
+.ks-a-tag {
+  display: inline-block; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.ks-a-tag.red { color: rgb(var(--ks-heritage-red)); }
+.ks-a-tag.ochre { color: rgb(var(--ks-ochre)); }
+.ks-a-tag.blue { color: rgb(var(--ks-cerulean)); }
+.ks-a-tag.green { color: rgb(var(--ks-emerald-rgb)); }
+
+/* ---------- 8. Bespoke Monogram Studio ---------- */
+.ks-studio { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 6rem; align-items: center; }
+@media screen and (max-width: 989px) { .ks-studio { grid-template-columns: 1fr; gap: 4rem; } }
+.ks-studio-visual {
+  aspect-ratio: 1/1; border-radius: 8px; border: 1px solid rgba(var(--color-foreground), 0.15);
+  background: radial-gradient(circle at 50% 30%, var(--ks-gold-dim-20), rgb(var(--color-background)) 70%);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.ks-studio-visual svg { width: 64%; height: 64%; }
+#ks-mono-preview { font-family: var(--font-heading-family); font-weight: 600; fill: rgb(var(--color-button)); }
+.ks-studio-copy h2 { font-size: clamp(1.7rem, 3.2vw, 2.3rem); line-height: 1.25; }
+.ks-studio-copy > p { margin-top: 2rem; color: rgba(var(--color-foreground), 0.7); line-height: 1.8; max-width: 52ch; font-size: 1.5rem; }
+.ks-studio-form { margin-top: 3.2rem; display: flex; flex-direction: column; gap: 1.6rem; max-width: 38rem; }
+.ks-studio-form label { font-size: 1.1rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(var(--color-foreground), 0.6); font-weight: 700; }
+.ks-studio-form input {
+  background: rgb(var(--color-background)); border: 1px solid rgba(var(--color-foreground), 0.2); border-radius: var(--ks-radius);
+  padding: 1.4rem 1.6rem; font-family: var(--font-body-family); font-size: 1.6rem; color: rgb(var(--color-foreground));
+  letter-spacing: 0.14em; text-transform: uppercase;
+}
+.ks-studio-form input:focus { outline: none; border-color: rgb(var(--color-button)); }
+.ks-studio-actions { display: flex; gap: 1.4rem; margin-top: 0.8rem; flex-wrap: wrap; }
+
+/* ---------- 9. Heritage timeline ---------- */
+.ks-heritage-line { position: relative; display: flex; justify-content: space-between; align-items: flex-start; }
+.ks-heritage-line::before { content: ""; position: absolute; top: 0.7rem; left: 0; right: 0; height: 1px; background: rgba(var(--color-foreground), 0.15); }
+.ks-h-mark { position: relative; text-align: center; flex: 1; }
+.ks-h-dot { width: 1.3rem; height: 1.3rem; border-radius: 50%; background: rgb(var(--color-button)); margin: 0 auto 1.4rem; position: relative; z-index: 1; border: 3px solid rgb(var(--color-background)); box-shadow: 0 0 10px var(--ks-gold-dim-20); }
+.ks-h-mark .ks-yr { font-family: var(--font-heading-family); font-size: 1.9rem; color: rgb(var(--color-button)); letter-spacing: 0.04em; }
+.ks-h-mark p { margin-top: 0.8rem; font-size: 1.3rem; color: rgba(var(--color-foreground), 0.65); max-width: 20ch; margin-inline: auto; }
+@media screen and (max-width: 749px) { .ks-heritage-line { flex-direction: column; gap: 3.2rem; } .ks-heritage-line::before { display: none; } }
+
+/* ---------- 10. Corporate gifting ---------- */
+.ks-corporate { border-radius: 10px; padding: 6.4rem 5.6rem; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 5rem; align-items: center; }
+@media screen and (max-width: 989px) { .ks-corporate { grid-template-columns: 1fr; padding: 4.4rem 3rem; } }
+.ks-corporate h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); line-height: 1.25; }
+.ks-corporate p { margin-top: 1.8rem; color: rgba(var(--color-foreground), 0.75); line-height: 1.8; max-width: 48ch; }
+.ks-corp-points { list-style: none; margin-top: 2.6rem; display: flex; flex-direction: column; gap: 1.2rem; padding: 0; }
+.ks-corp-points li { display: flex; gap: 1.2rem; align-items: flex-start; font-size: 1.4rem; }
+.ks-corp-points svg { flex-shrink: 0; margin-top: 0.3rem; width: 1.6rem; height: 1.6rem; stroke: rgb(var(--color-button)); }
+.ks-corp-cta { margin-top: 3rem; display: flex; gap: 1.6rem; flex-wrap: wrap; }
+.ks-corp-visual { aspect-ratio: 1/1; border-radius: 8px; border: 1px solid rgba(var(--color-foreground), 0.15); display: flex; align-items: center; justify-content: center; }
+.ks-corp-visual svg { width: 56%; height: 56%; stroke: rgb(var(--color-button)); }
+
+/* ---------- 11. Testimonials ---------- */
+.ks-quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.4rem; }
+@media screen and (max-width: 989px) { .ks-quotes { grid-template-columns: 1fr; } }
+.ks-quote-card { background: rgb(var(--color-background)); border: 1px solid rgba(var(--color-foreground), 0.15); border-radius: 6px; padding: 3.2rem 2.8rem; }
+.ks-quote-card p { font-family: var(--font-heading-family); font-size: 1.6rem; line-height: 1.65; text-transform: none; }
+.ks-quote-card .ks-who { margin-top: 2rem; font-size: 1.2rem; letter-spacing: 0.06em; color: rgb(var(--color-button)); font-weight: 700; text-transform: uppercase; }
+
+/* ---------- 12. Floating WhatsApp bubble ---------- */
+.ks-wa-float {
+  position: fixed; bottom: 2.6rem; right: 2.6rem; z-index: 70;
+  width: 5.8rem; height: 5.8rem; border-radius: 50%;
+  background: rgb(var(--color-background)); border: 1.5px solid rgb(var(--color-button));
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 0 0 var(--ks-gold-dim-20), 0 6px 22px rgba(0,0,0,0.4);
+  animation: ks-wa-pulse 2.6s ease-in-out infinite;
+  transition: transform 0.2s ease;
+  text-decoration: none;
+}
+.ks-wa-float:hover { transform: scale(1.08); }
+.ks-wa-float svg { width: 2.8rem; height: 2.8rem; stroke: rgb(var(--color-button)); }
+@keyframes ks-wa-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--ks-gold-dim-20), 0 6px 22px rgba(0,0,0,0.4); }
+  50% { box-shadow: 0 0 0 9px rgba(212,175,55,0), 0 6px 22px rgba(0,0,0,0.4); }
+}
+@media (prefers-reduced-motion: reduce) { .ks-wa-float { animation: none; } }
+
+/* ---------- 14. Inner Circle signup + success modal ---------- */
+.ks-inner-circle { text-align: center; max-width: 64rem; margin: 0 auto; }
+.ks-inner-circle h2 { font-size: clamp(1.9rem, 3.8vw, 2.8rem); }
+.ks-inner-circle p { margin-top: 1.6rem; color: rgba(var(--color-foreground), 0.7); line-height: 1.8; }
+.ks-ic-form { margin-top: 3.6rem; display: flex; gap: 0; border: 1px solid rgb(var(--color-button)); border-radius: var(--ks-radius); overflow: hidden; max-width: 44rem; margin-inline: auto; }
+.ks-ic-form input { flex: 1; min-width: 0; background: transparent; border: none; padding: 1.6rem 1.8rem; font-family: var(--font-body-family); color: rgb(var(--color-foreground)); font-size: 1.5rem; }
+.ks-ic-form input:focus { outline: none; }
+.ks-ic-form button { flex-shrink: 0; white-space: nowrap; background: rgb(var(--color-button)); color: rgb(var(--color-button-text)); border: none; padding: 0 2.6rem; font-weight: 700; font-size: 1.2rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: opacity 0.3s; }
+.ks-ic-form button:hover { opacity: 0.85; }
+@media screen and (max-width: 480px) {
+  .ks-ic-form { flex-direction: column; }
+  .ks-ic-form input { width: 100%; padding: 1.4rem 1.6rem; border-bottom: 1px solid rgba(var(--color-foreground), 0.15); text-align: center; }
+  .ks-ic-form button { width: 100%; padding: 1.4rem 1.6rem; }
+}
+
+.ks-modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(5, 5, 5, 0.72); align-items: center; justify-content: center; padding: 2rem; }
+.ks-modal.active { display: flex; }
+.ks-modal-panel { background: rgb(var(--color-background)); border: 1px solid rgb(var(--color-button)); max-width: 44rem; width: 100%; padding: 5rem 4rem; text-align: center; position: relative; }
+.ks-modal-panel h3 { font-size: clamp(1.6rem, 3vw, 2.1rem); color: rgb(var(--color-button)); letter-spacing: 0.03em; }
+.ks-modal-panel p { margin-top: 1.8rem; color: rgba(var(--color-foreground), 0.7); line-height: 1.7; font-size: 1.5rem; }
+.ks-modal-close { position: absolute; top: 1.6rem; right: 1.6rem; background: none; border: 1px solid rgba(var(--color-foreground), 0.2); color: rgb(var(--color-foreground)); width: 3.4rem; height: 3.4rem; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.3s, color 0.3s; }
+.ks-modal-close:hover { border-color: rgb(var(--color-button)); color: rgb(var(--color-button)); }
+
+/* ---------- 15. Reveal-on-scroll (custom sections only) ---------- */
+.ks-reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.ks-reveal.ks-in { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .ks-reveal { opacity: 1; transform: none; transition: none; } }
