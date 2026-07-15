@@ -1,0 +1,138 @@
+{
+  "sections": {
+    "kingsdale-hero": {
+      "type": "kingsdale-hero",
+      "settings": {
+        "eyebrow": "Since 2013 · Cape Town",
+        "heading": "Curating the Extraordinary",
+        "subheading": "Bespoke Elegance. Born in Cape Town.",
+        "body": "<p>A regal house of black and gold, built to hold something far less quiet — bold, playful, colour-drenched socks and apparel. Kingsdale Emporio is that tension, made deliberate: strict luxury on the outside, real character within.</p>",
+        "button_1_label": "Explore the Collection",
+        "button_1_link": "shopify://collections/all",
+        "button_2_label": "Design Your Own",
+        "button_2_link": "#studio"
+      }
+    },
+    "kingsdale-collections": {
+      "type": "kingsdale-collections",
+      "blocks": {
+        "card-1": {
+          "type": "collection_card",
+          "settings": {
+            "tag": "Drawer One",
+            "title": "Signature Socks",
+            "description": "Bold colourways and premium yarns — the collection Kingsdale was built on.",
+            "link_label": "Shop the Signature Line",
+            "link": "shopify://collections/all"
+          }
+        },
+        "card-2": {
+          "type": "collection_card",
+          "settings": {
+            "tag": "Drawer Two",
+            "title": "Custom Apparel",
+            "description": "A curated portfolio of lifestyle pieces, made to the same exacting standard.",
+            "link_label": "View Lifestyle Apparel",
+            "link": "shopify://collections/all"
+          }
+        },
+        "card-3": {
+          "type": "collection_card",
+          "settings": {
+            "tag": "Drawer Three",
+            "title": "Corporate Gifting",
+            "description": "Branded socks for events, onboarding and clients who deserve better swag.",
+            "link_label": "Start a Gifting Order",
+            "link": "#corporate"
+          }
+        }
+      },
+      "block_order": ["card-1", "card-2", "card-3"],
+      "settings": {
+        "eyebrow": "The Portfolio",
+        "heading": "Three Houses, One Standard",
+        "subheading": "From the sock that started it all to gifting your clients will actually keep — every line carries the same finish."
+      }
+    },
+    "kingsdale-africana-heritage": {
+      "type": "kingsdale-africana-heritage",
+      "settings": {
+        "eyebrow": "The Visual Tension",
+        "heading": "Africana Heritage Collection",
+        "subheading": "The house is black and gold — strict, regal, quiet. What it holds is not. Heritage Red, Vibrant Ochre, Cerulean Blue, Emerald Green: four colourways, one philosophy.",
+        "collection": "",
+        "products_to_show": 8,
+        "quick_add": "standard"
+      }
+    },
+    "kingsdale-monogram-studio": {
+      "type": "kingsdale-monogram-studio",
+      "settings": {
+        "eyebrow": "The Bespoke Studio",
+        "heading": "See Your Initials, Before You Order.",
+        "body": "Every corporate gifting order starts here. Type the initials or monogram you'd like woven into your pair, preview it in gold, then send your brief straight through to our studio on WhatsApp.",
+        "email": "info@kingsdalesocks.co.za"
+      }
+    },
+    "kingsdale-heritage-timeline": {
+      "type": "kingsdale-heritage-timeline",
+      "blocks": {
+        "m1": { "type": "milestone", "settings": { "year": "2013", "milestone": "Kingsdale Emporio founded in Cape Town" } },
+        "m2": { "type": "milestone", "settings": { "year": "2017", "milestone": "Signature sock collection launches" } },
+        "m3": { "type": "milestone", "settings": { "year": "2021", "milestone": "Corporate gifting studio opens" } },
+        "m4": { "type": "milestone", "settings": { "year": "Today", "milestone": "Custom apparel joins the portfolio" } }
+      },
+      "block_order": ["m1", "m2", "m3", "m4"],
+      "settings": {}
+    },
+    "kingsdale-corporate-gifting": {
+      "type": "kingsdale-corporate-gifting",
+      "blocks": {
+        "p1": { "type": "point", "settings": { "point": "Custom colourways & branded packaging" } },
+        "p2": { "type": "point", "settings": { "point": "Minimum orders suited to small and large teams" } },
+        "p3": { "type": "point", "settings": { "point": "Nationwide delivery, Cape Town made" } }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {
+        "eyebrow": "For Business",
+        "heading": "Gifting Your Clients Will Actually Keep On.",
+        "body": "We work with businesses across South Africa on branded socks and apparel for events, onboarding kits and executive gifting — designed, sampled and delivered without the back-and-forth.",
+        "whatsapp_message": "Hello Kingsdale Emporio! I am reaching out from your website and would like more information on corporate gifting."
+      }
+    },
+    "kingsdale-testimonials": {
+      "type": "kingsdale-testimonials",
+      "blocks": {
+        "q1": { "type": "quote", "settings": { "quote": "Ordered branded socks for our whole team's onboarding kit. The finish made a R500 gift feel like a R2000 one.", "attribution": "Naledi M., Johannesburg" } },
+        "q2": { "type": "quote", "settings": { "quote": "The monogram on my pair is a better conversation starter than my watch. That's saying something.", "attribution": "Ryan P., Cape Town" } },
+        "q3": { "type": "quote", "settings": { "quote": "Sampled, briefed and delivered for a 200-person conference in under three weeks. No drama, just quality.", "attribution": "Thandiwe K., Durban" } }
+      },
+      "block_order": ["q1", "q2", "q3"],
+      "settings": {
+        "eyebrow": "Word Gets Around",
+        "heading": "From the Inner Circle"
+      }
+    },
+    "kingsdale-inner-circle": {
+      "type": "kingsdale-inner-circle",
+      "settings": {
+        "eyebrow": "Welcome to the",
+        "heading": "Inner Circle",
+        "body": "Exclusive offers, early access to new colourways, and first word on limited corporate-gifting slots — straight to your inbox.",
+        "script_url": "https://script.google.com/macros/s/AKfycbxC-fDnWNscNvxUYs6nIsivbDNpKyM7Spzhr6vIbKsUpL7Ct9jnSytcO7aJY3uq7s3i/exec",
+        "modal_heading": "You're in the Inner Circle",
+        "modal_body": "Thank you for subscribing. Expect early access to new colourways and first word on limited corporate-gifting slots, straight to your inbox."
+      }
+    }
+  },
+  "order": [
+    "kingsdale-hero",
+    "kingsdale-collections",
+    "kingsdale-africana-heritage",
+    "kingsdale-monogram-studio",
+    "kingsdale-heritage-timeline",
+    "kingsdale-corporate-gifting",
+    "kingsdale-testimonials",
+    "kingsdale-inner-circle"
+  ]
+}
